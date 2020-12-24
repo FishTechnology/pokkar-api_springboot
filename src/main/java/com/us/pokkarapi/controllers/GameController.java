@@ -48,6 +48,8 @@ public class GameController {
 	@Autowired
 	private GameControllerMapper gameControllerMapper;
 	
+	private static final String DELETEGAME_API = "deleteGame";
+	
 	@GetMapping()
 	public List<GameModel> getGamesByUserId(@RequestParam String userid) {
 		List<GameModel> gamesModel = null;
@@ -64,7 +66,7 @@ public class GameController {
 			
 			gameModel
 				.add(linkTo(methodOn(GameController.class).deleteGame(userid, gameModel.getId().toString()))
-				.withRel("deleteGame"));
+				.withRel(DELETEGAME_API));
 			
 			gameModel
 				.add(linkTo(methodOn(GameController.class).createGame(null))
