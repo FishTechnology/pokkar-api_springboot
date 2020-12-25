@@ -252,7 +252,6 @@ public class GameServiceValidatorImpl implements GameServiceValidator {
 		return Collections.emptyList();
 	}
 	
-
 	@Override
 	public List<ErrorMessage> gameIdIsValid(UpdateGameStatusDto updateGameStatusDto) {
 		var errorMessage = gameIdIsValid(updateGameStatusDto.getRawGameId());
