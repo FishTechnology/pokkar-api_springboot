@@ -169,11 +169,8 @@ public class GameServiceImpl implements GameService {
 			return result;
 		}
 		
-		result = gameServicePostProcessor.deleteGamePostProcessor(deleteGameDto);
+		gameServicePostProcessor.deleteGamePostProcessor(deleteGameDto);
 		
-		if(!result.isEmpty()) {
-			return result;
-		}
 		return result;
 	}
 

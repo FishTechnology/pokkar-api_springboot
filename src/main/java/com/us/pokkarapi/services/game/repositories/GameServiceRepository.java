@@ -50,4 +50,6 @@ public interface GameServiceRepository extends JpaRepository<GameDao,Long> {
 			@Param(value = "modifiedon") Date modifiedon
 			);
 
+	List<GameDao> findByIdAndStatusNotIn(Long id, List<String> status);
+
 }
