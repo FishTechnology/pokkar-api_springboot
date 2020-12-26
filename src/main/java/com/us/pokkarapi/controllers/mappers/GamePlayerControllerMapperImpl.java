@@ -9,11 +9,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.us.pokkarapi.controllers.datacontracts.models.ErrorMessageModel;
-import com.us.pokkarapi.controllers.game.models.CreateGameResponseModel;
 import com.us.pokkarapi.controllers.gameplayer.models.CreateGamePlayerRequestModel;
 import com.us.pokkarapi.controllers.gameplayer.models.CreateGamePlayerResponseModel;
 import com.us.pokkarapi.services.datacontracts.ErrorMessage;
-import com.us.pokkarapi.services.game.datacontracts.dtos.DeleteGameDto;
 import com.us.pokkarapi.services.gameplayer.datacontracts.dtos.CreateGamePlayerDto;
 import com.us.pokkarapi.services.gameplayer.datacontracts.dtos.DeleteGamePlayerDto;
 import com.us.pokkarapi.services.utilities.PokkarServiceUtility;

@@ -101,11 +101,8 @@ public class GameServiceImpl implements GameService {
 			return result;
 		}
 		
-		result = gameServicePostProcessor.createGamePostProcessor(createGameDto);
+		gameServicePostProcessor.createGamePostProcessor(createGameDto);		
 		
-		if(!result.isEmpty()) {
-			return result;
-		}
 		return result;	
 	}
 

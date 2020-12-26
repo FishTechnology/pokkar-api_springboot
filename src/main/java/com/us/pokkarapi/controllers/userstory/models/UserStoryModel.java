@@ -1,29 +1,33 @@
-package com.us.pokkarapi.controllers.game.models;
+/**
+ * 
+ */
+package com.us.pokkarapi.controllers.userstory.models;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.hateoas.RepresentationModel;
 
 import com.googlecode.jmapper.annotations.JMap;
-import com.us.pokkarapi.controllers.gameidentifier.models.GameIdentifierModel;
 
 import lombok.Data;
 
+/**
+ * @author sajansoosaimicheal
+ *
+ */
+
 @Entity
 @Data
-@Table(name = "games")
-public class GameModel extends RepresentationModel<GameModel>  {
-	
+@Table(name = "userstory")
+public class UserStoryModel extends RepresentationModel<UserStoryModel> {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -38,14 +42,17 @@ public class GameModel extends RepresentationModel<GameModel>  {
 	@JMap
 	private Long userid;
 	
-	@Column(name = "status")
+	@Column(name = "gameid")
 	@JMap
-	private String status;
+	private Long gameid;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "game_Identifier_id", referencedColumnName = "id")
+	@Column(name = "description")
 	@JMap
-	private GameIdentifierModel gameIdentifier;
+	private String description;
+	
+	@Column(name = "acceptance_criteria")
+	@JMap
+	private String acceptanceCriteria;
 	
 	@Column(name = "createdon")
 	@JMap
@@ -63,5 +70,8 @@ public class GameModel extends RepresentationModel<GameModel>  {
 	@JMap
 	private String modifiedby;
 	
-
+	@Column(name = "isactive")
+	@JMap
+	private boolean isactive;
+	
 }

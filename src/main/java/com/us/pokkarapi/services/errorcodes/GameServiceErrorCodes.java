@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.us.pokkarapi.services.game.errorcodes;
+package com.us.pokkarapi.services.errorcodes;
 
 import org.springframework.stereotype.Service;
 
