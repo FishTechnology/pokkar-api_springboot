@@ -11,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.us.pokkarapi.services.datacontracts.ErrorMessage;
+import com.us.pokkarapi.services.errorcodes.GamePlayerServiceErrorCodes;
+import com.us.pokkarapi.services.errorcodes.GameServiceErrorCodes;
 import com.us.pokkarapi.services.game.enums.GameStatus;
-import com.us.pokkarapi.services.game.errorcodes.GameServiceErrorCodes;
 import com.us.pokkarapi.services.game.repositories.GameServiceRepository;
-import com.us.pokkarapi.services.gameplayer.datacontracts.daos.GamePlayerDao;
 import com.us.pokkarapi.services.gameplayer.datacontracts.dtos.CreateGamePlayerDto;
 import com.us.pokkarapi.services.gameplayer.datacontracts.dtos.DeleteGamePlayerDto;
-import com.us.pokkarapi.services.gameplayer.errorcodes.GamePlayerServiceErrorCodes;
 import com.us.pokkarapi.services.gameplayer.repositories.GamePlayerServiceRepository;
 import com.us.pokkarapi.services.utilities.PokkarServiceUtility;
 

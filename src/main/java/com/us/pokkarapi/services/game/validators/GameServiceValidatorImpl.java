@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.us.pokkarapi.services.datacontracts.ErrorMessage;
+import com.us.pokkarapi.services.errorcodes.GameServiceErrorCodes;
 import com.us.pokkarapi.services.game.datacontracts.dtos.CreateGameDto;
 import com.us.pokkarapi.services.game.datacontracts.dtos.DeleteGameDto;
 import com.us.pokkarapi.services.game.datacontracts.dtos.UpdateGameDto;
 import com.us.pokkarapi.services.game.datacontracts.dtos.UpdateGameStatusDto;
 import com.us.pokkarapi.services.game.enums.GameStatus;
-import com.us.pokkarapi.services.game.errorcodes.GameServiceErrorCodes;
 import com.us.pokkarapi.services.utilities.PokkarServiceUtility;
 
 @Service
