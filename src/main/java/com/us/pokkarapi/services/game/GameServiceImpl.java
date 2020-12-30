@@ -36,9 +36,6 @@ import com.us.pokkarapi.services.game.verifiers.GameServiceVerifier;
 public class GameServiceImpl implements GameService {
 	
 	@Autowired
-	private GameServiceRepository gameServiceRepository;
-	
-	@Autowired
 	private GameServiceValidator gameServiceValidator;
 	
 	@Autowired
