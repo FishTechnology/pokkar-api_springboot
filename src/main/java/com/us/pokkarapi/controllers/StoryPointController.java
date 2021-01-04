@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.us.pokkarapi.controllers.mappers.StoryPointControllerMapper;
 import com.us.pokkarapi.controllers.storypoint.models.CreateStoryPointRequest;
 import com.us.pokkarapi.controllers.storypoint.models.CreateStoryPointResponse;
 import com.us.pokkarapi.controllers.storypoint.models.StoryPointModel;
@@ -32,6 +33,9 @@ public class StoryPointController {
 	@Autowired
 	private StoryPointService storyPointService;
 	
+	@Autowired
+	private StoryPointControllerMapper storyPointControllerMapper;
+	
 	@GetMapping()
 	public List<StoryPointModel> getStoryPointsByUserId(@RequestParam String userid) 
 	{
@@ -46,9 +50,17 @@ public class StoryPointController {
 	@PostMapping()
 	public ResponseEntity<CreateStoryPointResponse> createStoryPoint(@RequestBody CreateStoryPointRequest createStoryPoint) 
 	{	
+		var createStoryPointDto = storyPointControllerMapper.mapCreateStoryPointDto(createStoryPoint);
 		
-		var response =  storyPointService.createStoryPoint(createStoryPoint);
+		var response =  storyPointService.createStoryPoint(createStoryPointDto);
 		
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		var createStoryPointResponse = storyPointControllerMapper.mapCreateStoryPointResponse(response,createStoryPointDto);
+		
+		if(createStoryPointResponse.getErrorMessages() != null && !createStoryPointResponse.getErrorMessages().isEmpty()) {
+			var httpStatus = createStoryPointDto.getHttpStatus() != null ? createStoryPointDto.getHttpStatus() : HttpStatus.BAD_REQUEST;
+			return new ResponseEntity<>(createStoryPointResponse, httpStatus);
+		}
+		
+		return new ResponseEntity<>(createStoryPointResponse, HttpStatus.CREATED);
 	}
 }
