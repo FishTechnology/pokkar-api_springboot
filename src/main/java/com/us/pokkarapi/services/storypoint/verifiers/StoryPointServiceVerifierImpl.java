@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.us.pokkarapi.services.datacontracts.ErrorMessage;
 import com.us.pokkarapi.services.errorcodes.StoryPointServiceErrorCodes;
 import com.us.pokkarapi.services.storypoint.datacontracts.dtos.CreateStoryPointDto;
+import com.us.pokkarapi.services.storypoint.datacontracts.dtos.DeleteStoryPointDto;
 import com.us.pokkarapi.services.storypoint.repositories.StoryPointRepository;
 import com.us.pokkarapi.services.utilities.PokkarServiceUtility;
 
@@ -41,6 +42,16 @@ public class StoryPointServiceVerifierImpl implements StoryPointServiceVerifier 
 		}
 		
 		return PokkarServiceUtility.getErrorMessages(storyPointServiceErrorCodes.getDuplicateStoryPointErrorCode(), "story point is duplicated found");	
+	}
+
+	@Override
+	public List<ErrorMessage> verifyDeleteStoryPoint(DeleteStoryPointDto deleteStoryPointDto) {
+		var storyPointDaos = storyPointRepository.findById(deleteStoryPointDto.getId());
+		if(storyPointDaos.isEmpty()) {
+			return PokkarServiceUtility.getErrorMessages(storyPointServiceErrorCodes.getStoryPointNotFoundErrorCode(), "story point is not found");				
+		}
+		
+		return Collections.emptyList();		
 	}
 
 }

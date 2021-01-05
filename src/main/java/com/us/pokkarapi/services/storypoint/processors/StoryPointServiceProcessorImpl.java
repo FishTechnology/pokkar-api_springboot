@@ -13,6 +13,7 @@ import com.googlecode.jmapper.JMapper;
 import com.us.pokkarapi.services.datacontracts.ErrorMessage;
 import com.us.pokkarapi.services.storypoint.datacontracts.daos.StoryPointDao;
 import com.us.pokkarapi.services.storypoint.datacontracts.dtos.CreateStoryPointDto;
+import com.us.pokkarapi.services.storypoint.datacontracts.dtos.DeleteStoryPointDto;
 import com.us.pokkarapi.services.storypoint.repositories.StoryPointRepository;
 
 /**
@@ -42,6 +43,16 @@ public class StoryPointServiceProcessorImpl implements StoryPointServiceProcesso
 		storyPoint.setIsactive(true);
 		storyPointRepository.save(storyPoint);
 		createStoryPointDto.setId(storyPoint.getId());
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<ErrorMessage> processDeleteStoryPoint(DeleteStoryPointDto deleteStoryPointDto) {
+		storyPointRepository.deleteStoryPoint(
+				deleteStoryPointDto.getId(),
+				deleteStoryPointDto.getIsactive(),
+				deleteStoryPointDto.getModifiedby(),
+				deleteStoryPointDto.getModifiedon());
 		return Collections.emptyList();
 	}
 

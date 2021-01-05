@@ -16,4 +16,8 @@ public class StoryPointServiceErrorCodes {
 		return "Pokkar.Api.{0}.{1}.StoryPoint.Point.Duplicated";
 	}
 
+	public String getStoryPointNotFoundErrorCode() {
+		return "Pokkar.Api.{0}.{1}.StoryPoint.Id.NotFound";
+	}
+
 }

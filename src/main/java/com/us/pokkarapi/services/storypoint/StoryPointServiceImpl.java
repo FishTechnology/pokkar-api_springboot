@@ -15,8 +15,10 @@ import com.us.pokkarapi.controllers.storypoint.models.CreateStoryPointResponse;
 import com.us.pokkarapi.controllers.storypoint.models.StoryPointModel;
 import com.us.pokkarapi.services.datacontracts.ErrorMessage;
 import com.us.pokkarapi.services.exceptions.UsApplicationException;
+import com.us.pokkarapi.services.game.enums.GameStatus;
 import com.us.pokkarapi.services.storypoint.datacontracts.daos.StoryPointDao;
 import com.us.pokkarapi.services.storypoint.datacontracts.dtos.CreateStoryPointDto;
+import com.us.pokkarapi.services.storypoint.datacontracts.dtos.DeleteStoryPointDto;
 import com.us.pokkarapi.services.storypoint.processors.StoryPointServiceProcessor;
 import com.us.pokkarapi.services.storypoint.repositories.StoryPointModelRepository;
 import com.us.pokkarapi.services.storypoint.repositories.StoryPointRepository;
@@ -30,9 +32,6 @@ import com.us.pokkarapi.services.storypoint.verifiers.StoryPointServiceVerifier;
 public class StoryPointServiceImpl implements StoryPointService {
 	@Autowired
 	private StoryPointModelRepository storyPointModelRepository;
-	
-	@Autowired
-	private StoryPointRepository storyPointRepository;
 	
 	@Autowired
 	private StoryPointServiceVerifier storyPointServiceVerifier;
@@ -71,6 +70,31 @@ public class StoryPointServiceImpl implements StoryPointService {
 		}
 		
 		result = storyPointServiceProcessor.processCreateStoryPoint(createStoryPointDto);
+		
+		return result;
+	}
+
+	@Override
+	public List<ErrorMessage> deleteStoryPoint(DeleteStoryPointDto deleteStoryPointDto) {
+		
+		var currentDate = new Date();
+		deleteStoryPointDto.setCreatedon(currentDate);
+		deleteStoryPointDto.setModifiedon(currentDate);
+		deleteStoryPointDto.setCreatedby(deleteStoryPointDto.getRawUserId());
+		deleteStoryPointDto.setModifiedby(deleteStoryPointDto.getRawUserId());
+		deleteStoryPointDto.setIsactive(false);
+		deleteStoryPointDto.setUserid(NumberUtils.toLong(deleteStoryPointDto.getRawUserId()));
+		deleteStoryPointDto.setId(NumberUtils.toLong(deleteStoryPointDto.getRawStoryPointId()));
+		
+		
+		var result = storyPointServiceVerifier.verifyDeleteStoryPoint(deleteStoryPointDto);
+		
+		if(!result.isEmpty()) {
+			return result;
+		}
+		
+		result = storyPointServiceProcessor.processDeleteStoryPoint(deleteStoryPointDto);
+		
 		
 		return result;
 	}
